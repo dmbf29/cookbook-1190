@@ -2,7 +2,8 @@ class View
   def display(recipes)
     # recipes is an array of INSTANCES
     recipes.each_with_index do |recipe, index|
-      puts "#{index + 1}) #{recipe.name} - #{recipe.description}"
+      x_mark = recipe.done? ? "X" : " "
+      puts "#{index + 1}) [#{x_mark}] #{recipe.name} - #{recipe.description}"
     end
   end
 

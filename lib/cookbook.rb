@@ -24,14 +24,27 @@ class Cookbook
     save_csv
   end
 
+  def mark_as_done(index)
+    recipe = @recipes[index]
+    recipe.mark!
+
+    save_csv
+  end
+
   private
 
   def load_csv
     # The goal is to populate the @recipes array with recipes (with recipes from the CSV)
-    CSV.foreach(@csv_file_path) do |row|
-      # row is an array of strings, e.g. ["Apple pie", "Apple with pies"]
+    CSV.foreach(@csv_file_path, headers: :first_row, header_converters: :symbol) do |row|
+      # we need to convert any non-strings before creating the instance
+      # row is a hash of strings, e.g. { name: "Apple pie", description: "Apple with pies" }
+      # p recipe = Recipe.new(row[0], row[1]....)
       # we need an instance of Recipe to push to the array
-      recipe = Recipe.new(row[0], row[1])
+      # when we create the instance, we need a
+
+      # reassigning what's inside of the :done
+      row[:done] = row[:done] == "true"
+      recipe = Recipe.new(row)
       @recipes << recipe
     end
   end
@@ -39,8 +52,9 @@ class Cookbook
   def save_csv
     CSV.open(@csv_file_path, 'wb') do |csv_file|
       # csv_file << ['boeuf bourguignon', 'boeuf with bourguignon']
+      csv_file << ['name', 'description', 'rating', 'prep_time', 'done']
       @recipes.each do |recipe|
-        csv_file << [recipe.name, recipe.description]
+        csv_file << [recipe.name, recipe.description, recipe.rating, recipe.prep_time, recipe.done?]
       end
     end
   end

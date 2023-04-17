@@ -1,4 +1,6 @@
-Apple pie,Apple with pies
-Carrot cake,Carrot with cakes
-Pancakes,Pan with cakes
-Boeuf Bourguignon,Boeuf with bourguignon
+name,description,rating,prep_time,done
+Apple pie,Apple with pies,,,true
+Carrot cake,Carrot with cakes,,,false
+Pancakes,Pan with cakes,,,true
+Boeuf Bourguignon,Boeuf with bourguignon,,,false
+Strawberry Cheesecake,"This creamy strawberry cheesecake is perfect for any special occasion! You have to bake the cake and let it cool for an hour, then chill it in the refrigerator for at least 4 hours before serving.",,,false
