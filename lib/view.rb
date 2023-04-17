@@ -1,5 +1,6 @@
 class View
   def display(recipes)
+    # recipes is an array of INSTANCES
     recipes.each_with_index do |recipe, index|
       puts "#{index + 1}) #{recipe.name} - #{recipe.description}"
     end
